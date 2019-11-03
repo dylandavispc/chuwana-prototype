@@ -4,7 +4,8 @@
   "description": "Mern Demo",
   "main": "server.js",
   "engines": {
-    "node": "10.15.3"
+    "node": "10.15.3",
+    "npm": "6.4.1"
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
