@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 // import  login  from "./UserFunctions";
-import API from "../../utils/API";
-const bodyParser = require("body-parser")    
+import API from "../../../utils/API";
+const bodyParser = require("body-parser");
 // const User = require("./models/user")
-const LocalStrategy = require("passport-local")
+const LocalStrategy = require("passport-local");
 // const passportLocalMongoose = require("passport-local-mongoose")
 
 class Login extends Component {
@@ -14,35 +14,26 @@ class Login extends Component {
       password: "",
       errors: {}
     };
-
     this.onChange = this.onChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
   }
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
   handleFormSubmit = event => {
     event.preventDefault();
-
     if (this.state.email && this.state.password) {
       API.loginUser({
         email: this.state.email,
         password: this.state.password
       })
-      .then()
-        
-      .catch(err => console.log(err));;
+        .then()
+        .catch(err => console.log(err));
     }
   };
-
   test = () => {
-    alert("it worked shithead!")
-  }
-
-
-
+    alert("it worked shithead!");
+  };
   render() {
     return (
       <div className="container">
@@ -87,5 +78,4 @@ class Login extends Component {
     );
   }
 }
-
 export default Login;

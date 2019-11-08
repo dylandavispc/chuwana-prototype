@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import  register  from "./UserFunctions";
-import API from "../../utils/API";
+
+import API from "../../../utils/API";
 
 class Register extends Component {
   constructor() {
@@ -9,10 +10,11 @@ class Register extends Component {
       first_name: "",
       last_name: "",
       email: "",
-      password: "",
+      password: ""
     };
 
     this.onChange = this.onChange.bind(this);
+
     // this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -37,7 +39,12 @@ class Register extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.email && this.state.password && this.state.first_name && this.state.last_name) {
+    if (
+      this.state.email &&
+      this.state.password &&
+      this.state.first_name &&
+      this.state.last_name
+    ) {
       API.postUser({
         first_name: this.state.first_name,
         last_name: this.state.last_name,
@@ -50,8 +57,8 @@ class Register extends Component {
   };
 
   test = () => {
-    alert("it worked shithead!")
-  }
+    alert("it worked shithead!");
+  };
 
   render() {
     return (
@@ -108,7 +115,14 @@ class Register extends Component {
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
                 onClick={this.handleFormSubmit}
-                disabled={!(this.state.email && this.state.password && this.state.first_name && this.state.last_name)}
+                disabled={
+                  !(
+                    this.state.email &&
+                    this.state.password &&
+                    this.state.first_name &&
+                    this.state.last_name
+                  )
+                }
               >
                 Register!
               </button>
