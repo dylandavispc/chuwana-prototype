@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import  login  from "./UserFunctions";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 const bodyParser = require("body-parser");
 // const User = require("./models/user")
 const LocalStrategy = require("passport-local");
-const passportLocalMongoose = require("passport-local-mongoose");
+// const passportLocalMongoose = require("passport-local-mongoose")
 
 class Login extends Component {
   constructor() {
