@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
+import API from "../../../utils/API";
+// import ls from "local-storage";
 
 class Landing extends Component {
   state = {
@@ -7,8 +8,20 @@ class Landing extends Component {
   };
 
   componentDidMount() {
+    // ls.get("id");
+    // this.loginGuest();
     this.loadProducts();
   }
+
+  // loginGuest = () => {
+  //   this.setState({
+  //     // ls.set('key', 'value')
+  //   })
+  //   if (!guestId) {
+  //     ls.set('key', 'value')
+  //     // localStorage.setItem()
+  //   }
+  // }
 
   loadProducts = () => {
     API.getProducts()

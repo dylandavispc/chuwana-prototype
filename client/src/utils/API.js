@@ -25,4 +25,7 @@ export default {
     postUser: function(data) {
         return axios.post("/api/users", data);
     },
+    loginUser: function(data) {
+        return axios.post("/api/login", data);
+    }
 };
