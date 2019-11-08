@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import  login  from "./UserFunctions";
 import API from "../../utils/API";
-const bodyParser = require("body-parser")    
-const User = require("./models/user")
-const LocalStrategy = require("passport-local")
-const passportLocalMongoose = require("passport-local-mongoose")
+const bodyParser = require("body-parser");
+// const User = require("./models/user")
+const LocalStrategy = require("passport-local");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 class Login extends Component {
   constructor() {
@@ -31,17 +31,15 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then()
-        
-      .catch(err => console.log(err));;
+        .then()
+
+        .catch(err => console.log(err));
     }
   };
 
   test = () => {
-    alert("it worked shithead!")
-  }
-
-
+    alert("it worked shithead!");
+  };
 
   render() {
     return (
