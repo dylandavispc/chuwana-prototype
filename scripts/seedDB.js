@@ -35,11 +35,57 @@ const catalogSeed = [
     }
 ];
 
+const userSeed = [
+    {
+        first_name: "John",
+        last_name: "Doe1",
+        email: "johndoe1@gmail.com",
+        password: "Johndoe1!"
+    },
+    {
+        first_name: "John",
+        last_name: "Doe2",
+        email: "johndoe2@gmail.com",
+        password: "Johndoe1!"
+    },
+    {
+        first_name: "John",
+        last_name: "Doe3",
+        email: "johndoe3@gmail.com",
+        password: "Johndoe1!"
+    },
+    {
+        first_name: "John",
+        last_name: "Doe4",
+        email: "johndoe4@gmail.com",
+        password: "Johndoe1!"
+    },
+    {
+        first_name: "John",
+        last_name: "Doe5",
+        email: "johndoe5@gmail.com",
+        password: "Johndoe1!"
+    },
+];
+
+
 db.Product
     .remove({})
     .then(() => db.Product.collection.insertMany(catalogSeed))
     .then(data => {
         console.log(data.result.n + " products inserted!");
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    })
+
+db.User
+    .remove({})
+    .then(() => db.User.collection.insertMany(userSeed))
+    .then(data => {
+        console.log(data.result.n + " users inserted!");
         process.exit(0);
     })
     .catch(err => {
