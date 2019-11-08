@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import  login  from "./UserFunctions";
+// import  login  from "./UserFunctions";
+import API from "../../utils/API";
+const bodyParser = require("body-parser")    
+const User = require("./models/user")
+const LocalStrategy = require("passport-local")
+const passportLocalMongoose = require("passport-local-mongoose")
 
 class Login extends Component {
   constructor() {
@@ -11,26 +16,32 @@ class Login extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  onSubmit(e) {
-    e.preventDefault();
 
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
+  handleFormSubmit = event => {
+    event.preventDefault();
 
-    login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`);
-      }
-    });
+    if (this.state.email && this.state.password) {
+      API.loginUser({
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then()
+        
+      .catch(err => console.log(err));;
+    }
+  };
+
+  test = () => {
+    alert("it worked shithead!")
   }
+
+
 
   render() {
     return (
@@ -64,6 +75,8 @@ class Login extends Component {
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
+                onClick={this.handleFormSubmit}
+                disabled={!(this.state.email && this.state.password)}
               >
                 Sign in
               </button>
