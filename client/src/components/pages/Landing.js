@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 
-
+let guestId = localStorage.getItem('myValueInLocalStorage')
 
 class Landing extends Component {
   state = {
@@ -9,7 +9,14 @@ class Landing extends Component {
 }
 
 componentDidMount() {
-    this.loadProducts();
+  this.loginGuest();
+  this.loadProducts();
+}
+
+loginGuest = () => {
+  if (!guestId) {
+
+  }
 }
 
 loadProducts = () => {
