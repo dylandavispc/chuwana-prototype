@@ -1,6 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose")
-const routes = require("./routes")
+const mongoose = require("mongoose");
+const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -9,6 +9,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+app.use(passport.initialize());
+app.use(passport.session()); // calls the deserializeUser
 
 app.use(routes);
 
