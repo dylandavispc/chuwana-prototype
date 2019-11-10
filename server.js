@@ -1,10 +1,12 @@
 const express = require("express");
+
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose")
 const session = require('express-session')
 const morgan = require('morgan')
 const passport = require('./passport');
 const routes = require("./routes")
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
