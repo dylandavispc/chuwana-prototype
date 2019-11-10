@@ -15,7 +15,7 @@ class Register extends Component {
 
     this.onChange = this.onChange.bind(this);
 
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
@@ -37,27 +37,32 @@ class Register extends Component {
   //   });
   // }
 
-  handleFormSubmit = event => {
+  onSubmit = event => {
     event.preventDefault();
     if (
       this.state.email &&
-      this.state.password &&
-      this.state.first_name &&
-      this.state.last_name
+      this.state.password
     ) {
       API.postUser({
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
         email: this.state.email,
         password: this.state.password
       })
-        .then(res => this.test())
-        .catch(err => console.log(err));
-    }
-  };
+        .then(response => {
+          console.log(response)
+          if (!response.data.errmsg) {
+            console.log('successful signup')
+            this.setState({ //redirect to login page
+              redirectTo: '/login'
+            })
+          } else {
+            console.log('username already taken')
+          }
+        }).catch(error => {
+          console.log('signup error: ')
+          console.log(error)
 
-  test = () => {
-    alert("it worked shithead!");
+        })
+      }
   };
 
   render() {
@@ -67,28 +72,6 @@ class Register extends Component {
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Register</h1>
-              <div className="form-group">
-                <label htmlFor="name">First name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="first_name"
-                  placeholder="Enter your first name"
-                  value={this.state.first_name}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="name">Last name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="last_name"
-                  placeholder="Enter your lastname name"
-                  value={this.state.last_name}
-                  onChange={this.onChange}
-                />
-              </div>
               <div className="form-group">
                 <label htmlFor="email">Email address</label>
                 <input
@@ -114,13 +97,11 @@ class Register extends Component {
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
-                onClick={this.handleFormSubmit}
+                onClick={this.onSubmit}
                 disabled={
                   !(
                     this.state.email &&
-                    this.state.password &&
-                    this.state.first_name &&
-                    this.state.last_name
+                    this.state.password
                   )
                 }
               >

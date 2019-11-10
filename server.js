@@ -1,6 +1,12 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const routes = require("./routes");
+
+const bodyParser = require('body-parser')
+const mongoose = require("mongoose")
+const session = require('express-session')
+const morgan = require('morgan')
+const passport = require('./passport');
+const routes = require("./routes")
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -10,8 +16,32 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(passport.initialize());
-app.use(passport.session()); // calls the deserializeUser
+// MIDDLEWARE
+app.use(morgan('dev'))
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+)
+app.use(bodyParser.json())
+
+//sessions
+app.use(
+  session({
+  secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
+  resave: false, //required
+  saveUninitialized: false //required
+  })
+)
+
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls the deserializeUser
+
+app.use( (req, res, next) => {
+  console.log('req.session', req.session);
+  return next();
+});
 
 app.use(routes);
 
