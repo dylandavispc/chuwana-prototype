@@ -7,6 +7,7 @@
     "node": "10.15.3",
     "npm": "6.4.1"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -29,11 +30,13 @@
     "body-parser": "^1.19.0",
     "create-react-context": "^0.3.0",
     "express": "^4.16.3",
+    "express-session": "^1.17.0",
     "if-env": "^1.0.4",
     "local-storage": "^2.0.0",
     "mdbreact": "^4.22.0",
     "mongoose": "^5.7.7",
     "mongoose-type-email": "^1.0.11",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
