@@ -65,6 +65,6 @@ router.post('/logout', (req, res) => {
   }
 })
 
-router.route("/login").post(userController.findOne);
+// router.route("/login").post(userController.findOne);
 
 module.exports = router;
