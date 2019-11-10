@@ -1,10 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 // import  login  from "./UserFunctions";
 import API from "../../../utils/API";
-const bodyParser = require("body-parser");
-// const User = require("./models/user")
-const LocalStrategy = require("passport-local");
-// const passportLocalMongoose = require("passport-local-mongoose")
 
 class Login extends Component {
   constructor() {
@@ -12,31 +10,50 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      redirectTo: null
     };
     this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  handleFormSubmit = event => {
+  onSubmit = event => {
     event.preventDefault();
-    if (this.state.email && this.state.password) {
-      API.loginUser({
-        email: this.state.email,
-        password: this.state.password
-      })
-        .then(res => {
-          console.log("the res", res);
+
+    console.log('handleSubmit')
+
+    axios
+        .post('/api/users/login', {
+            email: this.state.email,
+            password: this.state.password
         })
-        .catch(err => console.log(err));
-    }
+        .then(response => {
+            console.log('login response: ')
+            console.log(response)
+            if (response.status === 200) {
+                // update App.js state
+                this.props.updateUser({
+                    loggedIn: true,
+                    email: response.data.email
+                })
+                // update the state to redirect to home
+                this.setState({
+                    redirectTo: '/'
+                })
+            }
+        }).catch(error => {
+            console.log('login error: ')
+            console.log(error);
+            
+        })
+
   };
-  test = () => {
-    alert("it worked shithead!");
-  };
+
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+  } else {
     return (
       <div className="container">
         <div className="row">
@@ -68,7 +85,7 @@ class Login extends Component {
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"
-                onClick={this.handleFormSubmit}
+                onClick={this.onSubmit}
                 disabled={!(this.state.email && this.state.password)}
               >
                 Sign in
@@ -79,5 +96,6 @@ class Login extends Component {
       </div>
     );
   }
+}
 }
 export default Login;
