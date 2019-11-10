@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: {type: String, default: ""}
 })
 
+
 // Define schema methods
 userSchema.methods = {
 	checkPassword: function (inputPassword) {

@@ -20,6 +20,7 @@ class Login extends Component {
   }
   onSubmit = event => {
     event.preventDefault();
+
     console.log('handleSubmit')
 
     axios
@@ -46,6 +47,7 @@ class Login extends Component {
             console.log(error);
             
         })
+
   };
 
   render() {
