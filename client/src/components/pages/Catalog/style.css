@@ -1,0 +1,8 @@
+.metismenu {
+    position: fixed;
+    width: 15rem;
+    z-index: 1040;
+    bottom: 0;
+    left: 0;
+    top: 0;
+  }
