@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import API from "../../../utils/API";
 import Carousel from "../../Carousel"
-import Navbar from "../../Navbar"
+// import Navbar from "../../Navbar"
 import CategoryCards from "../../CategoryCards"
 import CommerceCards from "../../CommerceCards"
 import Features from "../../Features"
+import Prices from "../../Prices"
+import LandingHeader from "../../LandingHeader"
+import Navbar from "../../Navbar"
 
 class Landing extends Component {
+  constructor() {
+    super()
+  }
   state = {
     products: []
   };
@@ -36,8 +42,9 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Navbar />
+      <div>
+        <LandingHeader />
+        <div className="container">
         <div className="row">
           <div className="col-md-12">
             <Carousel />
@@ -51,6 +58,9 @@ class Landing extends Component {
           <div className="col-md-12">
             <CommerceCards />
             <CommerceCards />
+          </div>
+          <div>
+            <Prices />
           </div>
         </div>
         
@@ -70,6 +80,7 @@ class Landing extends Component {
             </div>
           </div>
         </div> */}
+        </div>
       </div>
     );
   }
