@@ -13,32 +13,8 @@ class Landing extends Component {
   constructor() {
     super()
   }
-  state = {
-    products: []
-  };
 
-  componentDidMount() {
-    // ls.get("id");
-    // this.loginGuest();
-    this.loadProducts();
-  }
 
-  // loginGuest = () => {
-  //   this.setState({
-  //     // ls.set('key', 'value')
-  //   })
-  //   if (!guestId) {
-  //     ls.set('key', 'value')
-  //     // localStorage.setItem()
-  //   }
-  // }
-
-  loadProducts = () => {
-    API.getProducts()
-      .then(res => this.setState({ products: res.data }))
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-  };
 
   render() {
     return (
