@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 // import  login  from "./UserFunctions";
 import API from "../../../utils/API";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 class Login extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class Login extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    console.log(this)
+    console.log(this);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -22,82 +23,72 @@ class Login extends Component {
   onSubmit = event => {
     event.preventDefault();
 
-    console.log('handleSubmit')
+    console.log("handleSubmit");
 
     axios
-        .post('/api/users/login', {
-            email: this.state.email,
-            password: this.state.password
-        })
-        .then(response => {
-            console.log('login response: ')
-            console.log(response)
-            console.log(this.props)
-            if (response.status === 200) {
-                // update App.js state
-                this.props.updateUser({
-                    loggedIn: true,
-                    email: response.data.email
-                })
-                // update the state to redirect to home
-                this.setState({
-                    redirectTo: '/catalog'
-                })
-            }
-        }).catch(error => {
-            console.log('login error: ')
-            console.log(error);
-            
-        })
-
+      .post("/api/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        console.log("login response: ");
+        console.log(response);
+        console.log(this.props);
+        if (response.status === 200) {
+          // update App.js state
+          this.props.updateUser({
+            loggedIn: true,
+            email: response.data.email
+          });
+          // update the state to redirect to home
+          this.setState({
+            redirectTo: "/catalog"
+          });
+        }
+      })
+      .catch(error => {
+        console.log("login error: ");
+        console.log(error);
+      });
   };
 
   render() {
     if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
-  } else {
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 mt-5 mx-auto">
-            <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-              <div className="form-group">
-                <label htmlFor="email">Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="Enter email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-lg btn-primary btn-block"
-                onClick={this.onSubmit}
-                disabled={!(this.state.email && this.state.password)}
-              >
-                Sign in
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+      return (
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <form>
+                <p className="h5 text-center mb-4">Sign in</p>
+                <div className="grey-text">
+                  <MDBInput
+                    label="Type your email"
+                    icon="envelope"
+                    group
+                    type="email"
+                    validate
+                    error="wrong"
+                    success="right"
+                  />
+                  <MDBInput
+                    label="Type your password"
+                    icon="lock"
+                    group
+                    type="password"
+                    validate
+                  />
+                </div>
+                <div className="text-center">
+                  <MDBBtn>Login</MDBBtn>
+                </div>
+              </form>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      );
+    }
   }
-}
 }
 export default Login;
