@@ -10,12 +10,12 @@ import {CatalogCards, CatalogList } from '../../CatalogCards'
 const content=[
   {
       icon: 'icon-class-name',
-      label: 'Label of Item',
+      label: 'Account Page',
       to: '#a-link',
   },
   {
       icon: 'icon-class-name',
-      label: 'Second Item',
+      label: 'Pieces',
       content: [
           {
               icon: 'icon-class-name',
@@ -24,6 +24,28 @@ const content=[
           },
       ],
   },
+  {
+    icon: 'icon-class-name',
+    label: 'Second Item',
+    content: [
+        {
+            icon: 'icon-class-name',
+            label: 'Sub Menu of Second Item',
+            to: '#another-link',
+        },
+    ],
+},
+{
+  icon: 'icon-class-name',
+  label: 'Second Item',
+  content: [
+      {
+          icon: 'icon-class-name',
+          label: 'Sub Menu of Second Item',
+          to: '#another-link',
+      },
+  ],
+},
 ];
 
 class Catalog extends React.Component {
