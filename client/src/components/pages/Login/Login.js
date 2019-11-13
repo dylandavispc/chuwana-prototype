@@ -32,6 +32,7 @@ class Login extends Component {
         .then(response => {
             console.log('login response: ')
             console.log(response)
+            console.log(this.props)
             if (response.status === 200) {
                 // update App.js state
                 this.props.updateUser({
@@ -40,7 +41,7 @@ class Login extends Component {
                 })
                 // update the state to redirect to home
                 this.setState({
-                    redirectTo: '/'
+                    redirectTo: '/catalog'
                 })
             }
         }).catch(error => {
