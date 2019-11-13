@@ -79,10 +79,9 @@ class Login extends Component {
             </label>
             <input
               type="password"
-              placeholder="Enter Password"
-              name="psw"
-              required
               className="form-control"
+              name="password"
+              placeholder="Password"
               value={this.state.password}
               onChange={this.onChange}
             />
