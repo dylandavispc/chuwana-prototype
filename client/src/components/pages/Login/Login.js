@@ -65,10 +65,13 @@ class Login extends Component {
               <b>Email</b>
             </label>
             <input
-              type="text"
               placeholder="Enter Email"
               name="email"
               required
+              type="email"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
             />
 
             <label for="psw">
@@ -79,6 +82,9 @@ class Login extends Component {
               placeholder="Enter Password"
               name="psw"
               required
+              className="form-control"
+              value={this.state.password}
+              onChange={this.onChange}
             />
 
             <button 
