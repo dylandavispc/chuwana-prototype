@@ -58,17 +58,20 @@ class Login extends Component {
     } else {
       return (
         <div class="bg-img">
-          <form action="/action_page.php" class="container">
+          <form class="container">
             <h1>Login</h1>
 
             <label for="email">
               <b>Email</b>
             </label>
             <input
-              type="text"
               placeholder="Enter Email"
               name="email"
               required
+              type="email"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
             />
 
             <label for="psw">
@@ -76,12 +79,19 @@ class Login extends Component {
             </label>
             <input
               type="password"
-              placeholder="Enter Password"
-              name="psw"
-              required
+              className="form-control"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.onChange}
             />
 
-            <button type="submit" class="btn">
+            <button 
+            type="submit" 
+            class="btn"
+            onClick={this.onSubmit}
+            disabled={!(this.state.email && this.state.password)}
+            >
               Login
             </button>
           </form>
