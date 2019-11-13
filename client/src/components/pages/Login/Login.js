@@ -3,13 +3,11 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 // import  login  from "./UserFunctions";
 import API from "../../../utils/API";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: false,
       email: "",
       password: "",
       redirectTo: null
@@ -58,36 +56,45 @@ class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <MDBContainer>
-          <MDBRow>
-            <MDBCol md="6">
-              <form>
-                <p className="h5 text-center mb-4">Sign in</p>
-                <div className="grey-text">
-                  <MDBInput
-                    label="Type your email"
-                    icon="envelope"
-                    group
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 mt-5 mx-auto">
+              <form noValidate onSubmit={this.onSubmit}>
+                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div className="form-group">
+                  <label htmlFor="email">Email address</label>
+                  <input
                     type="email"
-                    validate
-                    error="wrong"
-                    success="right"
+                    className="form-control"
+                    name="email"
+                    placeholder="Enter email"
+                    value={this.state.email}
+                    onChange={this.onChange}
                   />
-                  <MDBInput
-                    label="Type your password"
-                    icon="lock"
-                    group
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
                     type="password"
-                    validate
+                    className="form-control"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.onChange}
                   />
                 </div>
-                <div className="text-center">
-                  <MDBBtn>Login</MDBBtn>
-                </div>
+                <button
+                  type="submit"
+                  className="btn btn-lg btn-primary btn-block"
+                  onClick={this.onSubmit}
+                  disabled={!(this.state.email && this.state.password)}
+                >
+                  Sign in
+                </button>
               </form>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+            </div>
+          </div>
+        </div>
       );
     }
   }
