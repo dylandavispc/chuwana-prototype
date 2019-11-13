@@ -58,7 +58,7 @@ class Login extends Component {
     } else {
       return (
         <div class="bg-img">
-          <form action="/action_page.php" class="container">
+          <form class="container">
             <h1>Login</h1>
 
             <label for="email">
@@ -81,7 +81,12 @@ class Login extends Component {
               required
             />
 
-            <button type="submit" class="btn">
+            <button 
+            type="submit" 
+            class="btn"
+            onClick={this.onSubmit}
+            disabled={!(this.state.email && this.state.password)}
+            >
               Login
             </button>
           </form>
