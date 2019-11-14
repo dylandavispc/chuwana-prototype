@@ -245,6 +245,8 @@ const content=[
   },
 ];
 
+
+
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
@@ -254,10 +256,12 @@ class Catalog extends React.Component {
       windowWidth: 0,
       redirectTo: null,
       catalog: "bongs",
-      products: []
+      products: [],
+      filteredProducts: []
     };
 
     this.logout = this.logout.bind(this)
+    this.filter = this.filter.bind(this)
   }
 
   componentDidMount() {
@@ -270,18 +274,34 @@ class Catalog extends React.Component {
     window.removeEventListener("resize", this.handleResize);
   }
 
-  filterProducts = () => {
-    console.log("this.state.products")
-    // let bongs = data.filter( function (product) {
-    //   console.log(product)
-    // });
-  }
+  filter = () => {
+    console.log("filtering...")
+    // console.log(products)
+    var type=["bongs"]
+    var records = this.state.products
+    var typeObj={};
+    type.forEach(function(element) {
+    typeObj[element]=true;
+    });
+    var filteredArray=[];
+    records.forEach(function(element) {
+    if(typeObj[element.type])
+        filteredArray.push(element)
+    })
+    // console.log(filteredArray)
+    this.setState({ filteredProducts: filteredArray})
+    console.log(this.state.filteredProducts)
+    console.log("filter complete!")
+    }
 
   loadProducts = () => {    
     API.getProducts()
       .then(res => this.setState({ products: res.data }))
       // .then(res => console.log(res.data))
-      .then(this.filterProducts())
+      .then(setTimeout(() => {
+        console.log(this.state.products)
+        // this.filter(this.state.products)
+      }, 1000))
       .then(console.log(this.state))
       .catch(err => console.log(err));
   };
@@ -305,6 +325,8 @@ class Catalog extends React.Component {
     //     console.log('Logout error')
     // })
   }
+
+  
   
   handleResize = () =>
     this.setState({
@@ -382,7 +404,7 @@ class Catalog extends React.Component {
                     <div className="d-none d-md-inline">Account</div>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu right>
-                    <MDBDropdownItem href="#!">Account Page</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.filter}>Account Page</MDBDropdownItem>
                     <MDBDropdownItem href="#!">Account Settings</MDBDropdownItem>
                     <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
                   </MDBDropdownMenu>
@@ -399,11 +421,11 @@ class Catalog extends React.Component {
                 
               </div>
               <br />
-              {!this.state.products.length ? (
+              {!this.state.filteredProducts.length ? (
                 <h1 className="text-center">No Products to Display</h1>
               ) : (
                 <CatalogList>
-                  {this.state.products.map(product => {
+                  {this.state.filteredProducts.map(product => {
                     return (
                       <CatalogCards
                         key={product.name}
