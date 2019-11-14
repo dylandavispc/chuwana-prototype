@@ -4,7 +4,7 @@ const db = require("../models");
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  "mongodb://dill922:Dilldill1@ds059651.mlab.com:59651/heroku_vftj295w"
+  process.env.MONGODB_URI || "mongodb://localhost/chuwana-prototypeDB"
 );
 
 const catalogSeed = [
