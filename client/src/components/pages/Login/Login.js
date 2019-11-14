@@ -57,6 +57,7 @@ class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
+        
         <div class="bg-img">
           <form class="containerLogin">
             <h1>Login</h1>
