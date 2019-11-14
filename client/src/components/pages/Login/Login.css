@@ -22,7 +22,7 @@ html {
 }
 
 /* Add styles to the form container */
-.container {
+.containerLogin {
   position: absolute;
   right: 0;
   margin-right: 253px;
