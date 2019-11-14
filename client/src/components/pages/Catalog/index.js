@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 import API from "../../../utils/API.js"
 import "./style.css"
 import { MDBInput, MDBNavbar, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBSideNavItem, MDBSideNavCat, MDBSideNavNav, MDBSideNav, MDBContainer } from "mdbreact";
@@ -7,45 +9,240 @@ import MetisMenu from 'react-metismenu';
 import Footer from '../../Footer'
 import {CatalogCards, CatalogList } from '../../CatalogCards'
 
+
 const content=[
   {
       icon: 'icon-class-name',
       label: 'Account Page',
-      to: '#a-link',
+      to: '/catalog',
   },
   {
       icon: 'icon-class-name',
-      label: 'Pieces',
+      label: 'Bongs',
       content: [
-          {
-              icon: 'icon-class-name',
-              label: 'Sub Menu of Second Item',
-              to: '#another-link',
-          },
+        {
+            icon: 'icon-class-name',
+            label: 'Carburetor Bongs',
+            to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Multi-Chamber Bong',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Percolator Bong',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Gravity bongs',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Novelty Bongs',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Cleaning',
+          to: '#another-link',
+        },
       ],
+  },
+
+  {
+    icon: 'icon-class-name',
+    label: 'Dab Rigs',
+    content: [
+      {
+          icon: 'icon-class-name',
+          label: 'Rigs',
+          to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Novelty Rigs',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Nails',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'E-nails & E-rigs',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Dabbers',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Dabbing Adapters',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Torches',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Extractors',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Cleaning',
+        to: '#another-link',
+      },
+    ],
   },
   {
     icon: 'icon-class-name',
-    label: 'Second Item',
+    label: 'Vaporizors',
+    content: [
+      {
+        icon: 'icon-class-name',
+        label: 'Dry Herb Vaporizers',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Wax & Oil Vapes',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Vape Batteries',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Atomizers & Cartridges',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Infusers & Extractors',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Vape Accessories',
+        to: '#another-link',
+      },
+    ],
+  },
+  {
+    icon: 'icon-class-name',
+    label: 'Pipes',
+    content: [
+      {
+        icon: 'icon-class-name',
+        label: 'Bowls',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Bubblers',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Chillums & Dugouts',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Glass Blunts',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Novelty Pipes',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Pipe Accessories',
+        to: '#another-link',
+      },
+    ],
+  },
+  {
+    icon: 'icon-class-name',
+    label: 'Rolling Supplies',
+    content: [
+      {
+        icon: 'icon-class-name',
+        label: 'Rolling Papers',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Blunt Wraps',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Rolling Trays',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Rolling Machines',
+        to: '#another-link',
+      },
+    ],
+  },
+  {
+    icon: 'icon-class-name',
+    label: 'Accessories',
     content: [
         {
-            icon: 'icon-class-name',
-            label: 'Sub Menu of Second Item',
-            to: '#another-link',
-        },
-    ],
-},
-{
-  icon: 'icon-class-name',
-  label: 'Second Item',
-  content: [
-      {
           icon: 'icon-class-name',
-          label: 'Sub Menu of Second Item',
+          label: 'Grinders',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Lighters & Hempwick',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Candles & Odor Eliminators',
+          to: '#another-link',
+        },
+        {
+          icon: 'icon-class-name',
+          label: 'Scales',
           to: '#another-link',
       },
-  ],
-},
+      {
+        icon: 'icon-class-name',
+        label: 'Smell Proof Storage',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Ashtrays',
+        to: '#another-link',
+      },
+      {
+        icon: 'icon-class-name',
+        label: 'Travel Bags & Cases',
+        to: '#another-link',
+      },
+    ],
+  },
 ];
 
 class Catalog extends React.Component {
@@ -55,8 +252,12 @@ class Catalog extends React.Component {
       toggleStateA: false,
       breakWidth: 1300,
       windowWidth: 0,
+      redirectTo: null,
+      catalog: "bongs",
       products: []
     };
+
+    this.logout = this.logout.bind(this)
   }
 
   componentDidMount() {
@@ -69,14 +270,41 @@ class Catalog extends React.Component {
     window.removeEventListener("resize", this.handleResize);
   }
 
-  loadProducts = () => {
+  filterProducts = () => {
+    console.log("this.state.products")
+    // let bongs = data.filter( function (product) {
+    //   console.log(product)
+    // });
+  }
+
+  loadProducts = () => {    
     API.getProducts()
       .then(res => this.setState({ products: res.data }))
-      .then(res => console.log(res.data))
+      // .then(res => console.log(res.data))
+      .then(this.filterProducts())
       .then(console.log(this.state))
       .catch(err => console.log(err));
   };
-
+  
+  logout(event) {
+    this.setState({
+      redirectTo: '/login'
+    })
+    // console.log('logging out')
+    // axios.post('/user/logout').then(response => {
+    //   console.log(response.data)
+    //   console.log("logging out")
+    //   if (response.status === 200) {
+    //     this.props.updateUser({
+    //       loggedIn: false,
+    //       email: null
+    //     })
+        
+    //   }
+    // }).catch(error => {
+    //     console.log('Logout error')
+    // })
+  }
   
   handleResize = () =>
     this.setState({
@@ -107,12 +335,16 @@ class Catalog extends React.Component {
       flexDirection: "row"
     };
 
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
     return (
       <Router>
         
         <div className="fixed-sn light-blue-skin">
-        <MetisMenu content={content} activeLinkFromLocation />
-          <MDBNavbar style={navStyle} color="unique-color" double expand="md" fixed="top" dark scrolling>
+        <img className="mockLogo" src="https://www.stickpng.com/assets/images/58499e38b89d73775876620e.png" />
+        <MetisMenu className="metismenu1" content={content} activeLinkFromLocation />
+          <MDBNavbar id="navCat" style={navStyle} color="light-green darken-2" double expand="md" fixed="top" dark scrolling>
             <MDBNavbarNav left>
               <MDBNavItem>
                 <div
@@ -140,26 +372,19 @@ class Catalog extends React.Component {
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#!">
-                  <MDBIcon far icon="comments" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Support</div>
-                </MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink to="#!">
-                  <MDBIcon icon="user" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Account</div>
+                  <MDBIcon fas icon="shopping-cart" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Cart</div>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret>
-                    <div className="d-none d-md-inline">Dropdown</div>
+                    <div className="d-none d-md-inline">Account</div>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu right>
-                    <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Account Page</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Account Settings</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
@@ -170,6 +395,9 @@ class Catalog extends React.Component {
               <h2>
                 Products:
               </h2>
+              <div>
+                
+              </div>
               <br />
               {!this.state.products.length ? (
                 <h1 className="text-center">No Products to Display</h1>
@@ -178,7 +406,7 @@ class Catalog extends React.Component {
                   {this.state.products.map(product => {
                     return (
                       <CatalogCards
-                        // key={product.name}
+                        key={product.name}
                         name={product.name}
                         catagory={product.catagory}
                         disc={product.disc}
@@ -196,7 +424,7 @@ class Catalog extends React.Component {
         </div>
         
       </Router>
-    );
+    )};
   }
 }
 

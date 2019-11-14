@@ -70,7 +70,7 @@ class App extends Component {
         <Route exact path="/register" component={Register} />
         <Route exact path="/catalog" component={Catalog} />
         <Route
-          path="/login"
+          exact path="/login"
           render={() =>
             <Login
               updateUser={this.updateUser}
