@@ -66,7 +66,7 @@ class Register extends Component {
   render() {
     return (
       <div class="bg-img">
-        <form class="container">
+        <form class="containerReg">
           <h1>Register</h1>
 
           <label for="email">
