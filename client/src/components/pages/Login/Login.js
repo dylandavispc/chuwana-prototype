@@ -58,7 +58,7 @@ class Login extends Component {
     } else {
       return (
         <div class="bg-img">
-          <form class="container">
+          <form class="containerLogin">
             <h1>Login</h1>
 
             <label for="email">
