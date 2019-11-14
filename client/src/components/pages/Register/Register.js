@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import  register  from "./UserFunctions";
 import "./Register.css";
 import API from "../../../utils/API";
+import { Redirect } from "react-router-dom";
 
 class Register extends Component {
   constructor() {
@@ -48,9 +49,13 @@ class Register extends Component {
           console.log(response);
           if (!response.data.errmsg) {
             console.log("successful signup");
+            this.props.updateUser({
+              loggedIn: true,
+              email: response.data.email
+            });
             this.setState({
               //redirect to login page
-              redirectTo: "/login"
+              redirectTo: "/catalog"
             });
           } else {
             console.log("username already taken");
@@ -64,6 +69,9 @@ class Register extends Component {
   };
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
     return (
       <div class="bg-img">
         <form class="containerReg">
@@ -105,7 +113,7 @@ class Register extends Component {
         </form>
       </div>
     );
-  }
+  }}
 }
 
 export default Register;
