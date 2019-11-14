@@ -1,6 +1,7 @@
 import React from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 class LandingHeader extends React.Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class LandingHeader extends React.Component {
       isWideEnough: false,
     };
     this.onClick = this.onClick.bind(this);
+    this.redirectorLog = this.redirectorLog.bind(this);
+    this.redirectorReg = this.redirectorReg.bind(this);
   }
 
   onClick() {
@@ -18,14 +21,29 @@ class LandingHeader extends React.Component {
     });
   }
 
+  redirectorLog() {
+    this.setState({
+      redirectTo: '/login'
+    })
+  }
+
+  redirectorReg() {
+    this.setState({
+      redirectTo: '/register'
+    })
+  }
+
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
     return (
       <div>
         <header>
           <Router>
             <MDBNavbar color="bg-dark" fixed="top" dark expand="md" scrolling transparent>
               <MDBNavbarBrand href="/">
-                <strong>Navbar</strong>
+                <strong>Chuana</strong>
               </MDBNavbarBrand>
               {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
               <MDBCollapse isOpen={this.state.collapse} navbar>
@@ -33,11 +51,11 @@ class LandingHeader extends React.Component {
                   <MDBNavItem active>
                     <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="/login">Link</MDBNavLink>
+                  <MDBNavItem onClick={this.redirectorLog}>
+                    <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#">Profile</MDBNavLink>
+                  <MDBNavItem onClick={this.redirectorReg}>
+                    <MDBNavLink to="/register">Register</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
@@ -46,10 +64,9 @@ class LandingHeader extends React.Component {
 
           <MDBView src="https://mdbootstrap.com/img/Photos/Others/img%20(40).jpg">
             <MDBMask overlay="purple-light" className="flex-center flex-column text-white text-center">
-              <h2>This Navbar is fixed</h2>
-              <h5>It will always stay visible on the top, even when you scroll down</h5>
-              <p>Navbar's background will switch from transparent to solid color while scrolling down</p><br />
-              <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+              <h2>Welcome to Chuana</h2>
+              <h5>Headshopping made easy!</h5><br />
+              <p>Login or Register to enter the world's greatest Headshop supply center</p><br />
             </MDBMask>
           </MDBView>
         </header>
@@ -62,6 +79,7 @@ class LandingHeader extends React.Component {
       </div>
     );
   }
+}
 }
 
 export default LandingHeader;

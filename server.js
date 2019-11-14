@@ -5,6 +5,7 @@ const session = require('express-session')
 const morgan = require('morgan')
 const passport = require('./passport');
 const routes = require("./routes")
+// const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -45,7 +46,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/chuwana-prototypeDB"
+   "mongodb://dill922:Dilldill1@ds059651.mlab.com:59651/heroku_vftj295w"
 );
 
 app.listen(PORT, function() {
