@@ -260,6 +260,8 @@ const content = [
   }
 ];
 
+
+
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
@@ -269,10 +271,16 @@ class Catalog extends React.Component {
       windowWidth: 0,
       redirectTo: null,
       catalog: "bongs",
-      products: []
+      products: [],
+      filteredProducts: []
     };
 
+<<<<<<< HEAD
     this.logout = this.logout.bind(this);
+=======
+    this.logout = this.logout.bind(this)
+    this.filter = this.filter.bind(this)
+>>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
   }
 
   componentDidMount() {
@@ -285,18 +293,35 @@ class Catalog extends React.Component {
     window.removeEventListener("resize", this.handleResize);
   }
 
-  filterProducts = () => {
-    console.log("this.state.products");
-    // let bongs = data.filter( function (product) {
-    //   console.log(product)
-    // });
-  };
+
+  filter = () => {
+    console.log("filtering...")
+    // console.log(products)
+    var type=["bongs"]
+    var records = this.state.products
+    var typeObj={};
+    type.forEach(function(element) {
+    typeObj[element]=true;
+    });
+    var filteredArray=[];
+    records.forEach(function(element) {
+    if(typeObj[element.type])
+        filteredArray.push(element)
+    })
+    // console.log(filteredArray)
+    this.setState({ filteredProducts: filteredArray})
+    console.log(this.state.filteredProducts)
+    console.log("filter complete!")
+    }
 
   loadProducts = () => {
     API.getProducts()
       .then(res => this.setState({ products: res.data }))
       // .then(res => console.log(res.data))
-      .then(this.filterProducts())
+      .then(setTimeout(() => {
+        console.log(this.state.products)
+        // this.filter(this.state.products)
+      }, 1000))
       .then(console.log(this.state))
       .catch(err => console.log(err));
   };
@@ -321,6 +346,11 @@ class Catalog extends React.Component {
     // })
   }
 
+<<<<<<< HEAD
+=======
+  
+  
+>>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
   handleResize = () =>
     this.setState({
       windowWidth: window.innerWidth
@@ -393,6 +423,7 @@ class Catalog extends React.Component {
                   className="d-none d-md-inline white-text"
                   style={{ paddingTop: 5 }}
                 >
+<<<<<<< HEAD
                   Chuana Catalog
                 </MDBNavItem>
               </MDBNavbarNav>
@@ -463,6 +494,77 @@ class Catalog extends React.Component {
         </Router>
       );
     }
+=======
+                  <MDBIcon icon="bars" color="white" size="2x" />
+                </div>
+              </MDBNavItem>
+              <MDBNavItem className="d-none d-md-inline white-text" style={{ paddingTop: 5 }}>
+                Chuana Catalog
+              </MDBNavItem>
+            </MDBNavbarNav>
+            <MDBNavbarNav right style={specialCaseNavbarStyles}>
+              <MDBNavItem active>
+                <MDBNavLink to="#!">
+                  <MDBIcon icon="envelope" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Contact</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink to="#!">
+                  <MDBIcon fas icon="shopping-cart" className="d-inline-inline" />{" "}
+                  <div className="d-none d-md-inline">Cart</div>
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle nav caret>
+                    <div className="d-none d-md-inline">Account</div>
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu right>
+                    <MDBDropdownItem onClick={this.filter}>Account Page</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Account Settings</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavItem>
+            </MDBNavbarNav>
+          </MDBNavbar>
+          <main style={mainStyle}>
+            <MDBContainer fluid style={{ height: 2000 }} className="mt-5">
+              <h2>
+                Products:
+              </h2>
+              <div>
+                
+              </div>
+              <br />
+              {!this.state.filteredProducts.length ? (
+                <h1 className="text-center">No Products to Display</h1>
+              ) : (
+                <CatalogList>
+                  {this.state.filteredProducts.map(product => {
+                    return (
+                      <CatalogCards
+                        key={product.name}
+                        name={product.name}
+                        catagory={product.catagory}
+                        disc={product.disc}
+                        price={product.price}
+                      />
+                      // <li>{product.name}</li>
+                    );
+                  })}
+                </CatalogList>
+              )}
+              
+            </MDBContainer>
+          </main>
+          <div><Footer /></div>
+        </div>
+        
+      </Router>
+    )};
+>>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
   }
 }
 
