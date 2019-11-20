@@ -86,6 +86,22 @@ class App extends Component {
             />}
         />
         <Route
+          exact path="/catalog/stickers"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="stickers"
+            />}
+        />
+        <Route
+          exact path="/catalog/kits"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="kits"
+            />}
+        />
+        <Route
           exact path="/login"
           render={() =>
             <Login
