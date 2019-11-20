@@ -37,32 +37,32 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Carburetor Bongs",
-        to: "#another-link"
+        to: "/catalog/bongs"
       },
       {
         icon: "icon-class-name",
         label: "Multi-Chamber Bong",
-        to: "#another-link"
+        to: "/catalog/bongs"
       },
       {
         icon: "icon-class-name",
         label: "Percolator Bong",
-        to: "#another-link"
+        to: "/catalog/bongs"
       },
       {
         icon: "icon-class-name",
         label: "Gravity bongs",
-        to: "#another-link"
+        to: "/catalog/bongs"
       },
       {
         icon: "icon-class-name",
         label: "Novelty Bongs",
-        to: "#another-link"
+        to: "/catalog/bongs"
       },
       {
         icon: "icon-class-name",
         label: "Cleaning",
-        to: "#another-link"
+        to: "/catalog/bongs"
       }
     ]
   },
@@ -73,47 +73,47 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Rigs",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Novelty Rigs",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Nails",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "E-nails & E-rigs",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Dabbers",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Dabbing Adapters",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Torches",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Extractors",
-        to: "#another-link"
+        to: "/catalog/kits"
       },
       {
         icon: "icon-class-name",
         label: "Cleaning",
-        to: "#another-link"
+        to: "/catalog/kits"
       }
     ]
   },
@@ -124,32 +124,32 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Dry Herb Vaporizers",
-        to: "#another-link"
+        to: "/catalog/stickers"
       },
       {
         icon: "icon-class-name",
         label: "Wax & Oil Vapes",
-        to: "#another-link"
+        to: "/catalog/stickers"
       },
       {
         icon: "icon-class-name",
         label: "Vape Batteries",
-        to: "#another-link"
+        to: "/catalog/stickers"
       },
       {
         icon: "icon-class-name",
         label: "Atomizers & Cartridges",
-        to: "#another-link"
+        to: "/catalog/stickers"
       },
       {
         icon: "icon-class-name",
         label: "Infusers & Extractors",
-        to: "#another-link"
+        to: "/catalog/stickers"
       },
       {
         icon: "icon-class-name",
         label: "Vape Accessories",
-        to: "#another-link"
+        to: "/catalog/stickers"
       }
     ]
   },
@@ -160,32 +160,32 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Bowls",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Bubblers",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Chillums & Dugouts",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Glass Blunts",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Novelty Pipes",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Pipe Accessories",
-        to: "#another-link"
+        to: "/catalog/pipes"
       }
     ]
   },
@@ -196,22 +196,22 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Rolling Papers",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Blunt Wraps",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Rolling Trays",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Rolling Machines",
-        to: "#another-link"
+        to: "/catalog/pipes"
       }
     ]
   },
@@ -222,37 +222,37 @@ const content = [
       {
         icon: "icon-class-name",
         label: "Grinders",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Lighters & Hempwick",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Candles & Odor Eliminators",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Scales",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Smell Proof Storage",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Ashtrays",
-        to: "#another-link"
+        to: "/catalog/pipes"
       },
       {
         icon: "icon-class-name",
         label: "Travel Bags & Cases",
-        to: "#another-link"
+        to: "/catalog/pipes"
       }
     ]
   }
@@ -283,9 +283,10 @@ class Catalog extends React.Component {
     window.removeEventListener("resize", this.handleResize);
   }
   filter = () => {
+    console.log(this.props.catagory);
     console.log("filtering...");
     // console.log(products)y
-    var type = ["bongs"];
+    var type = [this.props.catagory];
     var records = this.state.products;
     var typeObj = {};
     type.forEach(function(element) {
@@ -307,7 +308,7 @@ class Catalog extends React.Component {
       .then(
         setTimeout(() => {
           console.log(this.state.products);
-          // this.filter(this.state.products)
+          this.filter();
         }, 1000)
       )
       .then(console.log(this.state))
