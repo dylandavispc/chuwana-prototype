@@ -23,7 +23,7 @@ const content=[
         {
             icon: 'icon-class-name',
             label: 'Carburetor Bongs',
-            to: '#another-link',
+            to: '/catalog/bongs',
         },
         {
           icon: 'icon-class-name',
@@ -271,7 +271,7 @@ class Catalog extends React.Component {
   }
 
   filterProducts = () => {
-    console.log("this.state.products")
+    console.log(this.props.catagory)
     // let bongs = data.filter( function (product) {
     //   console.log(product)
     // });
