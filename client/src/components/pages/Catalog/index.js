@@ -24,7 +24,6 @@ import {
 import MetisMenu from "react-metismenu";
 import Footer from "../../Footer";
 import { CatalogCards, CatalogList } from "../../CatalogCards";
-
 const content = [
   {
     icon: "icon-class-name",
@@ -67,7 +66,6 @@ const content = [
       }
     ]
   },
-
   {
     icon: "icon-class-name",
     label: "Dab Rigs",
@@ -259,13 +257,11 @@ const content = [
     ]
   }
 ];
-
-
-
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: this.props.email,
       toggleStateA: false,
       breakWidth: 1300,
       windowWidth: 0,
@@ -274,58 +270,49 @@ class Catalog extends React.Component {
       products: [],
       filteredProducts: []
     };
-
-<<<<<<< HEAD
     this.logout = this.logout.bind(this);
-=======
-    this.logout = this.logout.bind(this)
-    this.filter = this.filter.bind(this)
->>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
+    this.filter = this.filter.bind(this);
   }
-
   componentDidMount() {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     this.loadProducts();
+    console.log(this.props.userID);
   }
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
   }
-
-
   filter = () => {
-    console.log("filtering...")
-    // console.log(products)
-    var type=["bongs"]
-    var records = this.state.products
-    var typeObj={};
+    console.log("filtering...");
+    // console.log(products)y
+    var type = ["bongs"];
+    var records = this.state.products;
+    var typeObj = {};
     type.forEach(function(element) {
-    typeObj[element]=true;
+      typeObj[element] = true;
     });
-    var filteredArray=[];
+    var filteredArray = [];
     records.forEach(function(element) {
-    if(typeObj[element.type])
-        filteredArray.push(element)
-    })
+      if (typeObj[element.type]) filteredArray.push(element);
+    });
     // console.log(filteredArray)
-    this.setState({ filteredProducts: filteredArray})
-    console.log(this.state.filteredProducts)
-    console.log("filter complete!")
-    }
-
+    this.setState({ filteredProducts: filteredArray });
+    console.log(this.state.filteredProducts);
+    console.log("filter complete!");
+  };
   loadProducts = () => {
     API.getProducts()
       .then(res => this.setState({ products: res.data }))
       // .then(res => console.log(res.data))
-      .then(setTimeout(() => {
-        console.log(this.state.products)
-        // this.filter(this.state.products)
-      }, 1000))
+      .then(
+        setTimeout(() => {
+          console.log(this.state.products);
+          // this.filter(this.state.products)
+        }, 1000)
+      )
       .then(console.log(this.state))
       .catch(err => console.log(err));
   };
-
   logout(event) {
     this.setState({
       redirectTo: "/login"
@@ -339,47 +326,35 @@ class Catalog extends React.Component {
     //       loggedIn: false,
     //       email: null
     //     })
-
     //   }
     // }).catch(error => {
     //     console.log('Logout error')
     // })
   }
-
-<<<<<<< HEAD
-=======
-  
-  
->>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
   handleResize = () =>
     this.setState({
       windowWidth: window.innerWidth
     });
-
   handleToggleClickA = () => {
     this.setState({
       toggleStateA: !this.state.toggleStateA
     });
   };
-
   render() {
     const navStyle = {
       paddingLeft:
         this.state.windowWidth > this.state.breakWidth ? "210px" : "16px"
     };
-
     const mainStyle = {
       margin: "0 6%",
       paddingTop: "5.5rem",
       paddingLeft:
         this.state.windowWidth > this.state.breakWidth ? "240px" : "0"
     };
-
     const specialCaseNavbarStyles = {
       WebkitBoxOrient: "horizontal",
       flexDirection: "row"
     };
-
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
@@ -423,7 +398,6 @@ class Catalog extends React.Component {
                   className="d-none d-md-inline white-text"
                   style={{ paddingTop: 5 }}
                 >
-<<<<<<< HEAD
                   Chuana Catalog
                 </MDBNavItem>
               </MDBNavbarNav>
@@ -450,7 +424,9 @@ class Catalog extends React.Component {
                       <div className="d-none d-md-inline">Account</div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu right>
-                      <MDBDropdownItem href="#!">Account Page</MDBDropdownItem>
+                      <MDBDropdownItem onClick={this.filter}>
+                        Account Page
+                      </MDBDropdownItem>
                       <MDBDropdownItem href="#!">
                         Account Settings
                       </MDBDropdownItem>
@@ -467,11 +443,11 @@ class Catalog extends React.Component {
                 <h2>Products:</h2>
                 <div></div>
                 <br />
-                {!this.state.products.length ? (
+                {!this.state.filteredProducts.length ? (
                   <h1 className="text-center">No Products to Display</h1>
                 ) : (
                   <CatalogList>
-                    {this.state.products.map(product => {
+                    {this.state.filteredProducts.map(product => {
                       return (
                         <CatalogCards
                           key={product.name}
@@ -479,6 +455,7 @@ class Catalog extends React.Component {
                           catagory={product.catagory}
                           disc={product.disc}
                           price={product.price}
+                          email={this.props.email}
                         />
                         // <li>{product.name}</li>
                       );
@@ -494,78 +471,6 @@ class Catalog extends React.Component {
         </Router>
       );
     }
-=======
-                  <MDBIcon icon="bars" color="white" size="2x" />
-                </div>
-              </MDBNavItem>
-              <MDBNavItem className="d-none d-md-inline white-text" style={{ paddingTop: 5 }}>
-                Chuana Catalog
-              </MDBNavItem>
-            </MDBNavbarNav>
-            <MDBNavbarNav right style={specialCaseNavbarStyles}>
-              <MDBNavItem active>
-                <MDBNavLink to="#!">
-                  <MDBIcon icon="envelope" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Contact</div>
-                </MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink to="#!">
-                  <MDBIcon fas icon="shopping-cart" className="d-inline-inline" />{" "}
-                  <div className="d-none d-md-inline">Cart</div>
-                </MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <div className="d-none d-md-inline">Account</div>
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu right>
-                    <MDBDropdownItem onClick={this.filter}>Account Page</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Account Settings</MDBDropdownItem>
-                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
-              </MDBNavItem>
-            </MDBNavbarNav>
-          </MDBNavbar>
-          <main style={mainStyle}>
-            <MDBContainer fluid style={{ height: 2000 }} className="mt-5">
-              <h2>
-                Products:
-              </h2>
-              <div>
-                
-              </div>
-              <br />
-              {!this.state.filteredProducts.length ? (
-                <h1 className="text-center">No Products to Display</h1>
-              ) : (
-                <CatalogList>
-                  {this.state.filteredProducts.map(product => {
-                    return (
-                      <CatalogCards
-                        key={product.name}
-                        name={product.name}
-                        catagory={product.catagory}
-                        disc={product.disc}
-                        price={product.price}
-                      />
-                      // <li>{product.name}</li>
-                    );
-                  })}
-                </CatalogList>
-              )}
-              
-            </MDBContainer>
-          </main>
-          <div><Footer /></div>
-        </div>
-        
-      </Router>
-    )};
->>>>>>> e349b21f2787186fadf5a77674fd353800993ae6
   }
 }
-
 export default Catalog;
