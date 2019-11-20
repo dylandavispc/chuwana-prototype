@@ -147,7 +147,7 @@ const content=[
       {
         icon: 'icon-class-name',
         label: 'Bowls',
-        to: '#another-link',
+        to: '/catalog/pipes',
       },
       {
         icon: 'icon-class-name',
@@ -272,9 +272,23 @@ class Catalog extends React.Component {
 
   filterProducts = () => {
     console.log(this.props.catagory)
-    // let bongs = data.filter( function (product) {
-    //   console.log(product)
-    // });
+      console.log("filtering...")
+      // console.log(products)
+      var type=[this.props.catagory]
+      var records = this.state.products
+      var typeObj={};
+      type.forEach(function(element) {
+      typeObj[element]=true;
+      });
+      var filteredArray=[];
+      records.forEach(function(element) {
+      if(typeObj[element.type])
+          filteredArray.push(element)
+      })
+      // console.log(filteredArray)
+      this.setState({ filteredProducts: filteredArray})
+      console.log(this.state.filteredProducts)
+      console.log("filter complete!")
   }
 
   loadProducts = () => {    
