@@ -51,6 +51,7 @@ class App extends Component {
   }
   render() {
     return (
+<<<<<<< HEAD
       <Router>
         {/* <div><LandingHeader /></div> */}
         <div>
@@ -96,5 +97,60 @@ class App extends Component {
       </Router>
     );
   }
+=======
+    <Router>
+      {/* <div><LandingHeader /></div> */}
+      <div>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/catalog" component={Catalog} />
+        <Route
+
+          exact path="/catalog/bongs"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="bongs"
+            />}
+        />
+        <Route
+          exact path="/catalog/pipes"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="pipes"
+            />}
+        />
+        <Route
+          exact path="/catalog/stickers"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="stickers"
+            />}
+        />
+        <Route
+          exact path="/catalog/kits"
+          render={() =>
+            <Catalog
+              updateUser={this.updateUser}
+              catagory="kits"
+
+            />}
+        />
+        <Route
+          exact path="/login"
+          render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />}
+        />
+        {/* <Route exact path="/profile" component={Profile} /> */}
+      </div>
+      {/* <div><Footer /></div> */}
+    </Router>
+    )
+  };
+>>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
 }
 export default App;
