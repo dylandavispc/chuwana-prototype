@@ -67,9 +67,9 @@ class App extends Component {
       <div>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/register" component={Register} />
         <Route exact path="/catalog" component={Catalog} />
         <Route
+
           exact path="/catalog/bongs"
           render={() =>
             <Catalog
@@ -99,6 +99,7 @@ class App extends Component {
             <Catalog
               updateUser={this.updateUser}
               catagory="kits"
+
             />}
         />
         <Route

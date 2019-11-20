@@ -257,6 +257,7 @@ const content = [
     ]
   }
 ];
+
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
@@ -270,8 +271,10 @@ class Catalog extends React.Component {
       products: [],
       filteredProducts: []
     };
+
     this.logout = this.logout.bind(this);
     this.filter = this.filter.bind(this);
+
   }
   componentDidMount() {
     this.handleResize();
@@ -282,6 +285,7 @@ class Catalog extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
   }
+
   filter = () => {
     console.log(this.props.catagory)
     console.log("filtering...");
@@ -332,6 +336,7 @@ class Catalog extends React.Component {
     //     console.log('Logout error')
     // })
   }
+
   handleResize = () =>
     this.setState({
       windowWidth: window.innerWidth
