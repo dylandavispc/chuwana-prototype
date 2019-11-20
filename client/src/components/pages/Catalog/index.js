@@ -257,10 +257,7 @@ const content = [
     ]
   }
 ];
-<<<<<<< HEAD
-=======
 
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
@@ -274,15 +271,9 @@ class Catalog extends React.Component {
       products: [],
       filteredProducts: []
     };
-<<<<<<< HEAD
-    this.logout = this.logout.bind(this);
-    this.filter = this.filter.bind(this);
-=======
 
     this.logout = this.logout.bind(this);
     this.filter = this.filter.bind(this);
-
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
   }
   componentDidMount() {
     this.handleResize();
@@ -294,11 +285,8 @@ class Catalog extends React.Component {
     window.removeEventListener("resize", this.handleResize);
   }
   filter = () => {
-<<<<<<< HEAD
     console.log(this.props.catagory);
-=======
-    console.log(this.props.catagory)
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
+
     console.log("filtering...");
     // console.log(products)y
     var type = [this.props.catagory];
@@ -323,11 +311,8 @@ class Catalog extends React.Component {
       .then(
         setTimeout(() => {
           console.log(this.state.products);
-<<<<<<< HEAD
+
           this.filter();
-=======
-          this.filter()
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
         }, 1000)
       )
       .then(console.log(this.state))
@@ -351,10 +336,7 @@ class Catalog extends React.Component {
     //     console.log('Logout error')
     // })
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
   handleResize = () =>
     this.setState({
       windowWidth: window.innerWidth
@@ -497,8 +479,5 @@ class Catalog extends React.Component {
     }
   }
 }
-<<<<<<< HEAD
+
 export default Catalog;
-=======
-export default Catalog;
->>>>>>> 58227cec7c08693256b7e86c9b306be8aa27d745
